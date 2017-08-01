@@ -3,31 +3,31 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		049BD9751F3069250049853D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BD9741F3069250049853D /* AppDelegate.swift */; };
-		049BD9771F3069250049853D /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = 049BD9761F3069250049853D /* GameScene.sks */; };
-		049BD9791F3069250049853D /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = 049BD9781F3069250049853D /* Actions.sks */; };
 		049BD97B1F3069250049853D /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BD97A1F3069250049853D /* GameScene.swift */; };
 		049BD97D1F3069250049853D /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BD97C1F3069250049853D /* GameViewController.swift */; };
 		049BD9801F3069250049853D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 049BD97E1F3069250049853D /* Main.storyboard */; };
 		049BD9821F3069250049853D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 049BD9811F3069250049853D /* Assets.xcassets */; };
 		049BD9851F3069250049853D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 049BD9831F3069250049853D /* LaunchScreen.storyboard */; };
+		049BD9B11F307CC90049853D /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BD9B01F307CC90049853D /* Snake.swift */; };
+		049BD9B31F3084340049853D /* 2DVec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BD9B21F3084340049853D /* 2DVec.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		049BD9711F3069250049853D /* sn4ke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = sn4ke.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049BD9741F3069250049853D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		049BD9761F3069250049853D /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		049BD9781F3069250049853D /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		049BD97A1F3069250049853D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		049BD97A1F3069250049853D /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; usesTabs = 1; };
 		049BD97C1F3069250049853D /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		049BD97F1F3069250049853D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		049BD9811F3069250049853D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		049BD9841F3069250049853D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		049BD9861F3069250049853D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		049BD9B01F307CC90049853D /* Snake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snake.swift; sourceTree = "<group>"; };
+		049BD9B21F3084340049853D /* 2DVec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 2DVec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,9 +61,9 @@
 			isa = PBXGroup;
 			children = (
 				049BD9741F3069250049853D /* AppDelegate.swift */,
-				049BD9761F3069250049853D /* GameScene.sks */,
-				049BD9781F3069250049853D /* Actions.sks */,
 				049BD97A1F3069250049853D /* GameScene.swift */,
+				049BD9B01F307CC90049853D /* Snake.swift */,
+				049BD9B21F3084340049853D /* 2DVec.swift */,
 				049BD97C1F3069250049853D /* GameViewController.swift */,
 				049BD97E1F3069250049853D /* Main.storyboard */,
 				049BD9811F3069250049853D /* Assets.xcassets */,
@@ -105,13 +105,12 @@
 				TargetAttributes = {
 					049BD9701F3069250049853D = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = T8GHG32ZFE;
 						ProvisioningStyle = Automatic;
 					};
 				};
 			};
 			buildConfigurationList = 049BD96C1F3069250049853D /* Build configuration list for PBXProject "sn4ke" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -134,10 +133,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				049BD9801F3069250049853D /* Main.storyboard in Resources */,
-				049BD9771F3069250049853D /* GameScene.sks in Resources */,
 				049BD9821F3069250049853D /* Assets.xcassets in Resources */,
 				049BD9851F3069250049853D /* LaunchScreen.storyboard in Resources */,
-				049BD9791F3069250049853D /* Actions.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,9 +145,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				049BD9B11F307CC90049853D /* Snake.swift in Sources */,
 				049BD97B1F3069250049853D /* GameScene.swift in Sources */,
 				049BD97D1F3069250049853D /* GameViewController.swift in Sources */,
 				049BD9751F3069250049853D /* AppDelegate.swift in Sources */,
+				049BD9B31F3084340049853D /* 2DVec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -316,6 +315,7 @@
 				049BD98B1F3069250049853D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
