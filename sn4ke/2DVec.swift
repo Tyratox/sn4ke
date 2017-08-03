@@ -44,6 +44,10 @@ public struct Vec2D{
         return CGPoint(x: self.x, y: self.y);
     }
     
+    func toCGVector() -> CGVector{
+        return CGVector(dx: self.x, dy: self.y);
+    }
+    
     func distance(vec: Vec2D) -> CGFloat{
         return sqrt((self.x - vec.x) * (self.x - vec.x) + (self.y - vec.y) * (self.y - vec.y));
     }

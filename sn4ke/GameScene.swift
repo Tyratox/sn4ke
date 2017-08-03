@@ -6,16 +6,20 @@
 //  Copyright © 2017 tyratox.ch. All rights reserved.
 //
 
-import SpriteKit
-import GameplayKit
+import SpriteKit;
+import GameplayKit;
 
-class GameScene: SKScene {
-    
-    private var label : SKLabelNode?;
-    private var snake : Snake?;
+class GameScene: SKScene, SKPhysicsContactDelegate {
+	
 	private var lastRender : TimeInterval?;
 	
 	private var player : Snake?;
+	private var food : Food?;
+	private var enemy : Enemy?;
+	
+	private let spawnNode : SKNode = SKNode();
+	
+	private let displaySize : CGRect = UIScreen.main.bounds;
 	
 	func swipedRight(sender:UISwipeGestureRecognizer){
 		player?.velocity.x = 50;
@@ -38,8 +42,11 @@ class GameScene: SKScene {
 	}
     
     override func didMove(to view: SKView) {
+		//setup "world"
+		self.physicsWorld.contactDelegate = self;
         self.backgroundColor = SKColor.black;
 		
+		//setup controls
 		let swipeRight:UISwipeGestureRecognizer = UISwipeGestureRecognizer(target: self, action: #selector(self.swipedRight));
 		swipeRight.direction = .right;
 		view.addGestureRecognizer(swipeRight);
@@ -59,26 +66,64 @@ class GameScene: SKScene {
 		swipeDown.direction = .down;
 		view.addGestureRecognizer(swipeDown);
 		
+		//add spawner
+		self.addChild(spawnNode);
 		
-        // Get label node from scene and store it for use later
-        self.label = self.childNode(withName: "//helloLabel") as? SKLabelNode
-        if let label = self.label {
-            label.alpha = 0.0
-            label.run(SKAction.fadeIn(withDuration: 2.0))
-        }
+		//spawn food
+		self.food = Food(size: 1);
+		spawnNode.run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 5), SKAction.run(spawnFood)])));
+		
+		//spawn enemies
+		self.enemy = Enemy(size: 1);
+		spawnNode.run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 8), SKAction.run(spawnEnemies)])));
 		
 		
-		self.snake = Snake.init(length: (self.size.width + self.size.height) * 0.05);
 		
-		if let n = self.snake?.copy() as! Snake? {
-			n.position = CGPoint(x:50, y:50);
-			n.strokeColor = SKColor.green;
-			n.velocity = Vec2D(x: 50,y: 0);
-			self.addChild(n);
-			
-			self.player = n;
-		}
+		//add player
+		self.player = Snake.init(length: (self.size.width + self.size.height) * 0.05);
+		self.player?.position = CGPoint(x:50, y:50);
+		self.player?.strokeColor = SKColor.white;
+		self.player?.velocity = Vec2D(x: 50,y: 0);
+		self.addChild(self.player!);
     }
+	
+	func didBegin(_ contact: SKPhysicsContact) {
+		var player : Snake? = nil;
+		var node : SKNode = SKNode();
+		
+		if(contact.bodyA.categoryBitMask == Snake.categoryBitMask){
+			player = contact.bodyA.node as? Snake;
+			node = contact.bodyB.node!;
+		}else if(contact.bodyB.categoryBitMask == Snake.categoryBitMask){
+			player = contact.bodyB.node as? Snake;
+			node = contact.bodyA.node!;
+		}
+		
+		if(node.physicsBody?.categoryBitMask == Food.categoryBitMask){
+			player?.length += (node as! Food).getSize() * 10;
+			self.removeChildren(in: [node]);
+		}
+	}
+	
+	func spawnFood(){
+		if let n = self.food?.copy() as! Food? {
+			n.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32(displaySize.width))), y: CGFloat(arc4random_uniform(UInt32(displaySize.height))));
+			n.setSize(size: 1 + CGFloat(arc4random_uniform(10)));
+			n.startRemovalTimer();
+			
+			self.addChild(n);
+		}
+	}
+	
+	func spawnEnemies(){
+		if let n = self.enemy?.copy() as! Enemy? {
+			n.position = CGPoint(x: CGFloat(arc4random_uniform(UInt32(displaySize.width))), y: CGFloat(arc4random_uniform(UInt32(displaySize.height))));
+			n.setSize(size: 1 + CGFloat(arc4random_uniform(10)));
+			n.startRemovalTimer();
+			
+			self.addChild(n);
+		}
+	}
     
     
     func touchDown(atPoint pos : CGPoint) {
@@ -130,9 +175,9 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let label = self.label {
+        /*if let label = self.label {
 			label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut");
-        }
+        }*/
         
 		for t in touches { self.touchDown(atPoint: t.location(in: self)) };
     }

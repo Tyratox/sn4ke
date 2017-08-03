@@ -15,6 +15,8 @@
 		049BD9851F3069250049853D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 049BD9831F3069250049853D /* LaunchScreen.storyboard */; };
 		049BD9B11F307CC90049853D /* Snake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BD9B01F307CC90049853D /* Snake.swift */; };
 		049BD9B31F3084340049853D /* 2DVec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 049BD9B21F3084340049853D /* 2DVec.swift */; };
+		04CA15271F33BA5D00184128 /* Enemy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04CA15261F33BA5D00184128 /* Enemy.swift */; };
+		04FC3EE71F326248006CFDA8 /* Food.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC3EE61F326248006CFDA8 /* Food.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		049BD9861F3069250049853D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		049BD9B01F307CC90049853D /* Snake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Snake.swift; sourceTree = "<group>"; };
 		049BD9B21F3084340049853D /* 2DVec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = 2DVec.swift; sourceTree = "<group>"; };
+		04CA15261F33BA5D00184128 /* Enemy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enemy.swift; sourceTree = "<group>"; };
+		04FC3EE61F326248006CFDA8 /* Food.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Food.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,8 @@
 				049BD9741F3069250049853D /* AppDelegate.swift */,
 				049BD97A1F3069250049853D /* GameScene.swift */,
 				049BD9B01F307CC90049853D /* Snake.swift */,
+				04FC3EE61F326248006CFDA8 /* Food.swift */,
+				04CA15261F33BA5D00184128 /* Enemy.swift */,
 				049BD9B21F3084340049853D /* 2DVec.swift */,
 				049BD97C1F3069250049853D /* GameViewController.swift */,
 				049BD97E1F3069250049853D /* Main.storyboard */,
@@ -145,11 +151,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04CA15271F33BA5D00184128 /* Enemy.swift in Sources */,
 				049BD9B11F307CC90049853D /* Snake.swift in Sources */,
 				049BD97B1F3069250049853D /* GameScene.swift in Sources */,
 				049BD97D1F3069250049853D /* GameViewController.swift in Sources */,
 				049BD9751F3069250049853D /* AppDelegate.swift in Sources */,
 				049BD9B31F3084340049853D /* 2DVec.swift in Sources */,
+				04FC3EE71F326248006CFDA8 /* Food.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
