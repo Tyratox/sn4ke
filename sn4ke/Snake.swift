@@ -49,11 +49,6 @@ public class Snake: SKShapeNode{
         self.strokeColor = UIColor.white;
         self.position = CGPoint(x: 0, y: 0);
         
-        //snake.run(SKAction.repeatForever(SKAction.rotate(byAngle: CGFloat(Double.pi), duration: 1)));
-        /*snake.run(SKAction.sequence([SKAction.wait(forDuration: 0.5),
-         SKAction.fadeOut(withDuration: 0.5),
-         SKAction.removeFromParent()]));*/
-        
         //add label
         self.label.fontName = "GillSans-UltraBold";
         self.label.fontSize = 14;

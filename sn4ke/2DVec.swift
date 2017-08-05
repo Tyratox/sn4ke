@@ -66,3 +66,7 @@ public struct Vec2D{
     
 }
 
+func ==(lhs: Vec2D, rhs: Vec2D) -> Bool {
+    return lhs.x == rhs.x && lhs.y == lhs.y;
+}
+

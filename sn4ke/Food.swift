@@ -10,6 +10,7 @@ import SpriteKit;
 
 class Food : SKShapeNode {
     static let categoryBitMask: UInt32 = 0x1 << 1;
+    static let sizeFactor: CGFloat = 2;
     
     private var size : CGFloat;
     
@@ -19,16 +20,19 @@ class Food : SKShapeNode {
     
     init(size: CGFloat){
         
-        self.size = size;
+        self.size = size * Food.sizeFactor;
         
         super.init();
-        
-        self.updatePath(size: size);
         
         self.fillColor = SKColor.green;
         self.strokeColor = SKColor.clear;
         
-        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: size, height: size));
+        updatePath();
+        updateHitbox();
+    }
+    
+    private func updateHitbox(){
+        self.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: size, height: size), center: CGPoint(x: size/2, y: size/2));
         self.physicsBody?.affectedByGravity = false;
         self.physicsBody?.isDynamic = true;
         self.physicsBody?.categoryBitMask = Food.categoryBitMask;
@@ -36,8 +40,8 @@ class Food : SKShapeNode {
         self.physicsBody?.contactTestBitMask = Snake.categoryBitMask;
     }
     
-    private func updatePath(size: CGFloat){
-        self.path = CGPath.init(rect: CGRect(origin: CGPoint(x:0,y:0), size: CGSize(width: size*2, height: size*2)), transform: nil);
+    private func updatePath(){
+        self.path = CGPath(rect: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: size, height: size)), transform: nil);
     }
     
     required convenience init?(coder aDecoder: NSCoder) {
@@ -45,8 +49,9 @@ class Food : SKShapeNode {
     }
     
     func setSize(size: CGFloat){
-        self.size = size;
-        self.updatePath(size: size);
+        self.size = size * Food.sizeFactor;
+        updatePath();
+        updateHitbox();
     }
     
     func getSize() -> CGFloat{

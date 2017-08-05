@@ -126,7 +126,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	}
     
     
-    func touchDown(atPoint pos : CGPoint) {
+    func touchDown(touch : UITouch) {
+		if(touch.tapCount == 2){
+			player?.velocity = (player?.velocity.multiply(factor: 2))!;
+			let dblVel : Vec2D = (player?.velocity)!;
+			
+			player?.run(SKAction.sequence([SKAction.wait(forDuration: 5), SKAction.run({
+				if((self.player?.velocity)! == dblVel){
+					self.player?.velocity = (self.player?.velocity.multiply(factor: 0.5))!;
+				}
+			})]));
+		}
         /*if let n = self.snake?.copy() as! Snake? {
 			n.position = pos;
 			n.strokeColor = SKColor.green;
@@ -179,7 +189,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 			label.run(SKAction.init(named: "Pulse")!, withKey: "fadeInOut");
         }*/
         
-		for t in touches { self.touchDown(atPoint: t.location(in: self)) };
+		for t in touches { self.touchDown(touch: t) };
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
